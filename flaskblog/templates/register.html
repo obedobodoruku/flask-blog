@@ -1,0 +1,58 @@
+{% extends "layout.html" %}
+{% block body %}
+    <div class="flex justify-center items-center">
+        <fieldset class="w-full h-[75%] border-2 border-bg-white rounded-md p-10">
+            <legend class="font-extrabold text-[1.7rem]">Sign up today!</legend>
+            <form method="post" action="">
+                {{ form.hidden_tag() }}
+                <div class="flex flex-col">
+                    <div>
+                        {{ form.username.label }}
+                        {% if form.username.errors %}
+                            {% for error in form.username.errors %}
+                                <div><div class="mt-5">{{ form.username(class="border-1 border-red-500 w-full p-2") }}</div><span class="text-red-500">{{ error }}</span></div>
+                            {% endfor %}
+                        {% else %}
+                            <div class="mt-5">{{ form.username(class="border-1 border-white w-full p-2") }}</div>
+                        {% endif %}
+                    </div>
+                    <div class="mt-10">
+                        {{ form.email.label }}
+                        {% if form.email.errors %}
+                            {% for error in form.email.errors %}
+                                <div><div class="mt-5">{{ form.email(class="border-1 border-red-500 w-full p-2") }}</div><span class="mt-5 text-[red]">{{ error }}</span></div>
+                            {% endfor %}
+                        {% else %}
+                            <div class="mt-5">{{ form.email(class="border-1 border-white w-full p-2") }}</div>
+                        {% endif %}
+                    </div>
+                    <div class="mt-10">
+                        {{ form.password.label }}
+                        {% if form.password.errors %}
+                            {% for error in form.password.errors %}
+                                <div><div class="mt-5">{{ form.password(class="border-1 border-red-500 w-full p-2") }}</div><span class="mt-5 text-red-500">{{ error }}</span></div>
+                            {% endfor %}
+                        {% else %}
+                            <div class="mt-5">{{ form.password(class="border-1 border-white w-full p-2") }}</div>
+                        {% endif %}
+                    </div>
+                    <div class="mt-10">
+                        {{ form.confirm_password.label }}
+                        {% if form.confirm_password.errors %}
+                            {% for error in form.confirm_password.errors %}
+                                <div><div class="mt-5">{{ form.confirm_password(class="border-1 border-red-500 w-full p-2") }}</div><span class="mt-5 text-red-500">{{ error }}</span></div>
+                            {% endfor %}
+                        {% else %}
+                            <div class="mt-5">{{ form.confirm_password(class="border-1 border-white w-full p-2") }}</div>
+                        {% endif %}
+                        
+                    </div>
+                    <div class="mt-10">
+                        <div>{{ form.submit(class="btn bg-blue-500 font-bold shadow-lg shadow-blue-500/50 p-2 hover:bg-blue-800 rounded-[15px] w-[150px]") }}</div>
+                    </div>
+                </div>
+            </form>
+        </fieldset>
+    </div>
+{% endblock %}
+

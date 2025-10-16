@@ -1,0 +1,16 @@
+{% extends "layout.html" %}
+{% block body %}
+    <h1 class="text-[2.5rem] text-center font-bold mb-5">{{ post.title }}</h1>
+    <div class="flex flex-col justify-center items-center mb-10">
+                <article class="border-2 border-white w-full p-5 mt-10">
+                    <div>
+                        <h2 class="text-[2rem]"><a class="hover:text-blue-500 hover:underline decoration-2 cursor-pointer" href="{{ url_for('update_post', post_id=post.id) }}">{{ post.title }}</a></h2>
+                        <p>By <a href="#" class="hover:text-blue-500 hover:underline decoration-2 cursor-pointer text-[1.5rem] font-bold">{{ post.author.username }}</a> on {{ post.date_posted.strftime('%Y-%m-%d') }}.</p>
+                    </div>
+                    <hr class="my-5">
+                    <div class="pb-2">
+                        <p>{{ post.content }}</p>
+                    </div>
+                </article>
+    </div>
+{% endblock %}

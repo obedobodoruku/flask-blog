@@ -1,0 +1,25 @@
+{% extends "layout.html" %}
+{% block body %}
+    <h1 class="text-[2.5rem] font-bold mb-5">Home</h1>
+
+    {% for post in posts %}
+        <div class="flex flex-col justify-center items-center mb-10">
+            <article class="border-2 border-white w-full p-5 mt-10">
+                <div>
+                    <a class="text-[2rem]">
+                        {% if post.author == current_user %}
+                            <a href="{{ url_for('update_post', post_id=post.id) }}" class="hover:text-blue-500 hover:underline decoration-2 cursor-pointer text-[1.5rem] font-bold">{{ post.title }}</a>
+                        {% elif post.author != current_user %}
+                            <span class="text-[1.5rem] font-bold">{{ post.title }}</span>
+                         {% endif %}
+                    </h2>
+                    <p>By <a href="{{ url_for('user_posts', username=post.author.username) }}" class="hover:text-blue-500 hover:underline decoration-2 cursor-pointer text-[1.5rem] font-bold">{{ post.author.username }}</a> on {{ post.date_posted.strftime('%Y-%m-%d') }}.</p>
+                </div>
+                <hr class="my-5">
+                <div class="pb-2">
+                    <a href="{{ url_for('blog_post', post_id=post.id) }}" class="hover:text-blue-500 hover:underline decoration-2 cursor-pointer text-[1.5rem] font-bold"><button type=button class="content-button">View -></button></a>
+                </div>
+            </article>
+        </div>
+    {% endfor %}
+{% endblock %}

@@ -1,0 +1,19 @@
+{% extends "layout.html" %}
+{% block body %}
+    <h1 class="text-[2.5rem] text-center font-bold mb-5">{{ user.username }} Posts</h1>
+
+    {% for post in user_posts %}
+        <div class="flex flex-col justify-center items-center mb-10">
+            <article class="border-2 border-white w-[75%] p-5 mt-10">
+                <div>
+                    <h2 class="text-[2rem]">{{ post.title }}</h2>
+                    <p>on {{ post.date_posted.strftime('%Y-%m-%d') }}.</p>
+                </div>
+                <hr class="my-5">
+                <div class="pb-2">
+                    <p>{{ post.content }}</p>
+                </div>
+            </article>
+        </div>
+    {% endfor %}
+{% endblock %}

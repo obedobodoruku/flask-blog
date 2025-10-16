@@ -1,0 +1,45 @@
+{% extends "layout.html" %}
+{% block body %}
+    <div class="mb-20">
+        <div class="text-[2.5rem] font-bold">{{ current_user.username }}</div>
+        <small class="text-[1rem] text-[#c1c0c0]">{{ current_user.email }}</small>
+    </div>
+    <div class="flex justify-center items-center">
+        <fieldset class="w-full h-full border-2 border-bg-white rounded-md p-10">
+            <legend class="font-extrabod text-[1.7rem]">Update Post</legend>
+            <form method="post" action="">
+                {{ form.hidden_tag() }}
+                <div class="flex flex-col">
+                     <div>
+                        {{ form.title.label }}
+                        {% if form.title.errors %}
+                            {% for error in form.title.errors %}
+                                <div><div class="mt-5">{{ form.title(class="border-1 border-red-500 w-full p-2") }}</div><span class="text-red-500">{{ error }}</span></div>
+                            {% endfor %}
+                        {% else %}
+                            <div class="mt-5">{{ form.title(class="border-1 border-white w-full p-2") }}</div>
+                        {% endif %}
+                     </div>
+                     <div class="mt-10">
+                        {{ form.content.label }}
+                        {% if form.content.errors %}
+                            {% for error in form.content.errors %}
+                                <div class="mt-5">{{ form.content(class="pt-3 pr-5 pl-5 border-1 border-red-500 w-full p-2") }}</div><span class="mt-5 text-[red]">{{ error }}</span>
+                            {% endfor %}
+                        {% else %}
+                            <div class="mt-5">{{ form.content(class="pt-3 pr-5 pl-5 border-1 border-bg-white w-full h-full p-2") }}</div>
+                        {% endif %}
+                    </div>
+                    <div class="flex flex-row mt-10">
+                        <div class="mr-10">
+                            <div>{{ form.submit(class="btn bg-blue-500 font-bold shadow-lg shadow-blue-500/50 p-2 hover:bg-blue-800 rounded-[15px] w-[150px]") }}</div>
+                        </div>
+                        <div>
+                            <a href="{{ url_for('delete_post', post_id=post.id) }}"><button type="button" class="btn bg-blue-500 font-bold shadow-lg shadow-blue-500/50 p-2 hover:bg-blue-800 rounded-[15px] w-[150px]">Delete</button></a>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </fieldset>
+    </div>
+{% endblock %}
